@@ -1,0 +1,60 @@
+generated: '2026-07-25'
+method: searched
+source: |
+  https://status.cccis.com/ (HTTP 200, title "CCC Status Page");
+  https://api.cccis.com/v1 (observed URI-path version);
+  CCC Security Addendum (SA 110425) - BCP/DR commitments
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: null
+  evidence: The production gateway routes /v1 (HTTP 401 OAuth challenge); the root
+    and every other prefix probed returns 404. No versioning policy is published.
+  published_policy: false
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+  published_policy: false
+  note: No deprecation policy, Sunset/Deprecation header commitment (RFC 8594) or
+    end-of-life schedule is published on any CCC host. The one publicly described
+    lifecycle transition is a product migration, not an API deprecation policy -
+    CCC frames the legacy CIECA EMS "data pump" extract as superseded by the
+    cloud BMS Secure Share API while maintaining parallel EMS support.
+status_page:
+  url: https://status.cccis.com/
+  status: 200
+  verified: '2026-07-25'
+  type: JavaScript-rendered status application (title "CCC Status Page")
+  machine_readable_feed: false
+  note: No /api/v2/summary.json, index.json or history.rss feed is served - the
+    host is a single-page app that answers 200 with the same shell for every path,
+    so no component or incident history could be harvested anonymously.
+sla:
+  url: null
+  uptime_target: null
+  note: No public SLA or uptime target. Availability commitments live in the
+    contracted Master Service Agreement.
+business_continuity:
+  source: CCC Security Addendum s2(c)
+  commitments:
+  - Documented business continuity (BCP) and disaster recovery (DR) plan.
+  - Secure offsite copies of BC/DR documentation for post-disaster retrieval.
+  - Documented DR procedures to recover Protected Data, with prioritized recovery.
+  - Formal communicated plan when a BCP/DR event occurs.
+incident_response:
+  source: CCC Security Addendum s4
+  data_breach_notification: 48 hours
+  commitments:
+  - Current, tested written incident response plan with specific cyber-incident procedures.
+  - Trained and tested incident response team.
+  - 'Notification within forty-eight (48) hours of any Data Breach, covering nature,
+    source and scope, dates of occurrence and discovery, containment measures, and
+    a named senior contact.'
+change_log:
+  url: null
+  published: false
+  note: No dated changelog or release-notes surface exists. /release-notes and
+    /changelog 404 on both www.cccis.com and docs.cccis.com. Product change is
+    communicated through https://www.cccis.com/news-and-insights and through
+    gated product documentation at https://docs.cccis.com/insurers/documentation.
+deprecated_operations: []

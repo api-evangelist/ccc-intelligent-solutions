@@ -1,0 +1,78 @@
+generated: '2026-07-25'
+method: searched
+source: https://auth.cccis.com/.well-known/openid-configuration
+docs: https://www.cccsecureshare.com/Developers
+note: |
+  Derived from live, anonymously readable discovery documents plus the live
+  OAuth challenge on the production gateway - not from an OpenAPI, because CCC
+  publishes none. There is no self-serve credential path: api.cccis.com issues
+  no public token endpoint of its own, and CCC Secure Share credentials are
+  released only after app registration, CCC review and active CIECA membership.
+summary:
+  types: [oauth2, openIdConnect]
+  api_key_in: []
+  oauth2_flows: [authorizationCode, implicit, password, clientCredentials, deviceCode, refreshToken]
+  public_client_registration: false
+  self_serve: false
+  gating: app registration + CCC approval + active CIECA membership (Secure Share)
+schemes:
+- name: CCCGatewayBearer
+  type: oauth2
+  in: header
+  parameter: Authorization
+  scheme: Bearer
+  source: probed https://api.cccis.com/v1 (HTTP 401)
+  evidence: |
+    www-authenticate: Bearer realm="null",error="invalid_token",
+    error_description="oauth.v2.InvalidAccessToken: Invalid access token"
+  gateway: Apigee (oauth.v2.* / keymanagement.service.* fault codes) behind Cloudflare
+  token_issuance: not public
+- name: CCCOktaOrgAuthorizationServer
+  type: openIdConnect
+  openIdConnectUrl: https://auth.cccis.com/.well-known/openid-configuration
+  source: well-known/ccc-intelligent-solutions-openid-configuration.json
+  issuer: https://auth.cccis.com
+  endpoints:
+    authorization: https://auth.cccis.com/oauth2/v1/authorize
+    token: https://auth.cccis.com/oauth2/v1/token
+    userinfo: https://auth.cccis.com/oauth2/v1/userinfo
+    introspection: https://auth.cccis.com/oauth2/v1/introspect
+    revocation: https://auth.cccis.com/oauth2/v1/revoke
+    registration: https://auth.cccis.com/oauth2/v1/clients
+    end_session: https://auth.cccis.com/oauth2/v1/logout
+    device_authorization: https://auth.cccis.com/oauth2/v1/device/authorize
+    jwks: https://auth.cccis.com/oauth2/v1/keys
+  grant_types: [authorization_code, implicit, refresh_token, password, 'urn:ietf:params:oauth:grant-type:device_code']
+  token_endpoint_auth_methods: [client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt, none]
+  code_challenge_methods: [S256]
+  dpop_signing_alg_values: [RS256, RS384, RS512, ES256, ES384, ES512]
+  request_parameter_supported: true
+- name: CCCOktaConnectAuthorizationServer
+  type: openIdConnect
+  openIdConnectUrl: https://auth.cccis.com/oauth2/aus294ajl2Qs1RgY24x7/.well-known/openid-configuration
+  source: well-known/ccc-intelligent-solutions-connect-openid-configuration.json
+  issuer: https://auth.cccis.com/oauth2/aus294ajl2Qs1RgY24x7
+  used_by: https://connect.cccis.com/ (CCC Connect customer/partner portal)
+  endpoints:
+    authorization: https://auth.cccis.com/oauth2/aus294ajl2Qs1RgY24x7/v1/authorize
+    token: https://auth.cccis.com/oauth2/aus294ajl2Qs1RgY24x7/v1/token
+    userinfo: https://auth.cccis.com/oauth2/aus294ajl2Qs1RgY24x7/v1/userinfo
+    introspection: https://auth.cccis.com/oauth2/aus294ajl2Qs1RgY24x7/v1/introspect
+    revocation: https://auth.cccis.com/oauth2/aus294ajl2Qs1RgY24x7/v1/revoke
+  grant_types: [authorization_code, implicit, refresh_token, password, 'urn:ietf:params:oauth:grant-type:device_code']
+  code_challenge_methods: [S256]
+  observed_flow: authorization_code + PKCE, scope "openid email profile connect:portal"
+- name: CCCOktaClientCredentials
+  type: oauth2
+  flow: clientCredentials
+  source: well-known/ccc-intelligent-solutions-oauth-authorization-server.json
+  note: |
+    client_credentials appears in grant_types_supported at the org authorization
+    server (RFC 8414 metadata) only. No public/dynamic client registration is
+    offered to third parties; an unauthenticated POST to the token endpoint
+    returns Okta errorCode "invalid_client".
+gaps:
+- No API key / basic-auth scheme is documented or observed anywhere.
+- 'No public developer credential flow: token issuance for api.cccis.com is
+  contract-gated, and Secure Share app credentials require CIECA membership.'
+- No mutualTLS or client-certificate requirement is published.

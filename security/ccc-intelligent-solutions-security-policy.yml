@@ -1,0 +1,95 @@
+generated: '2026-07-25'
+method: searched
+probe: true
+source: |
+  https://www.cccis.com/policy/information-security-program;
+  CCC Security Addendum (SA 110425), https://docs.cccis.com/insurers/legal
+note: |
+  CCC publishes a real, substantive security policy surface - an Information
+  Security Program page and a downloadable Security Addendum that is incorporated
+  by reference into every customer agreement. What CCC does NOT publish is a
+  vulnerability disclosure channel: there is no security.txt, no bug bounty, no
+  responsible-disclosure page and no published security@ address. Both facts are
+  recorded here.
+policy:
+- url: https://www.cccis.com/policy/information-security-program
+  title: CCC Information Security Program
+  status: 200
+- url: https://docs.cccis.com/insurers/legal
+  title: CCC Security Addendum (SA 110425), Master Service Agreement, Data Processing Agreement
+  status: 200
+contact: []
+program:
+  owner: Chief Information Security Officer
+  board_oversight: CISO meets with the Board bi-annually to review security incidents
+    and improvements; an information security program report is delivered to the
+    board at least annually.
+  framework: NIST Cybersecurity Framework v2.0
+  risk_assessment_cadence: at least annually, or on material change to
+    infrastructure, data or threats
+  policy_review_cadence: at least annually
+  security_awareness_training: recurring, appropriate to job function
+penetration_testing:
+  cadence: at least once per year and upon a substantive change in CCC infrastructure
+  scope: internal and external infrastructure penetration test, plus an application
+    penetration test for software provided to the customer
+  performed_by: independent third party
+  remediation: 'CVSS "very high", "high" or "medium" findings, or ratings higher
+    than 4.0, promptly remediated and retested at CCC''s expense'
+  reporting: executive summary report made available to the customer on request
+encryption:
+  standard_name: Strong Encryption
+  symmetric: minimum 256-bit AES or equivalent
+  asymmetric: minimum 2048-bit RSA or equivalent
+  in_transit: true
+  at_rest: true
+  portable_media: Portable Devices must employ Strong Encryption and Multi-Factor
+    Authentication; physical media transported outside CCC control must be
+    encrypted and moved by authorised couriers in locked containers.
+access_control:
+  mfa: required, including multifactor authentication from open public networks
+  mfa_definition: verification of at least two authentication factors
+media_sanitization:
+  standard: NIST SP 800-88
+  reuse_internal: Clear
+  disposal_external: Purge
+incident_response:
+  plan: current, written and tested incident response plan
+  team: formed, trained and tested incident response team
+  data_breach_notification: within forty-eight (48) hours of any Data Breach
+  breach_notice_contents:
+  - nature, source and scope of the breach, data impacted, dates of occurrence and discovery
+  - containment measures taken and identification of any continuing exposure
+  - contact information for a senior-level person responsible for customer communication
+third_party_oversight:
+  cloud_providers: CCC reviews cloud providers' SOC 2 Type II reports and other
+    security documentation at least annually.
+  contractual: security obligations imposed contractually on third-party providers
+    appropriate to the services.
+customer_assurance:
+  available_on_request:
+  - Standardized Information Gathering (SIG) privacy and security questionnaires
+  - SOC 2 Type II third-party reports
+  trust_center: https://trust.cccis.com/
+vulnerability_disclosure:
+  program: false
+  security_txt: false
+  bug_bounty: false
+  disclosure_page: false
+  published_contact: null
+  probes:
+  - {url: 'https://www.cccis.com/.well-known/security.txt', status: 404}
+  - {url: 'https://api.cccis.com/.well-known/security.txt', status: 404}
+  - {url: 'https://api.cccsecureshare.com/.well-known/security.txt', status: 404}
+  - {url: 'https://auth.cccis.com/.well-known/security.txt', status: 405}
+  - {url: 'https://www.cccis.com/security', status: 404}
+  - {url: 'https://www.cccis.com/about/security', status: 404}
+  note: |
+    No HackerOne, Bugcrowd or Intigriti program was found, and no responsible
+    disclosure page exists. For a company handling US P&C claims data at this
+    scale, the absence of any coordinated-disclosure channel is the finding -
+    security researchers have no published route in.
+evidence:
+- {source: 'https://www.cccis.com/policy/information-security-program', kind: security-policy-page, status: 200}
+- {source: 'https://docs.cccis.com/insurers/legal', kind: security-addendum-pdf, status: 200}
+- {source: 'https://api.cccis.com/v1', kind: oauth-bearer-enforcement, status: 401}

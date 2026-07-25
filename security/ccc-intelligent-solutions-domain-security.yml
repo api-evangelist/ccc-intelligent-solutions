@@ -1,0 +1,59 @@
+generated: '2026-07-25'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.cccis.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 20 03:17:57 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: www.cccsecureshare.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 17 11:14:08 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: api.cccsecureshare.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 27 03:41:28 2026 GMT
+  hsts: null
+- host: api.cccis.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Dec 27 23:59:59 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+  hsts_include_subdomains: true
+  note: Production API gateway (Apigee behind Cloudflare); added by hand after the
+    apis.yml pass wired it as a baseURL.
+- host: auth.cccis.com
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Feb  4 23:59:59 2027 GMT
+  hsts: true
+  hsts_max_age: 315360000
+  hsts_include_subdomains: true
+  note: Okta custom domain. Negotiated TLSv1.2 (ECDHE-RSA-AES128-GCM-SHA256) rather
+    than TLSv1.3 - the only CCC host in this set that does not reach 1.3.
+- host: connect.cccis.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep  4 04:13:31 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+  hsts_include_subdomains: true
+domains:
+- domain: cccis.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+- domain: cccsecureshare.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none

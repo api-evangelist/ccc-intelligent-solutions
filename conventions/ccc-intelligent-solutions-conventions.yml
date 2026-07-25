@@ -1,0 +1,86 @@
+generated: '2026-07-25'
+method: searched
+source: |
+  live probes of https://api.cccis.com/v1 and https://auth.cccis.com;
+  https://www.cccsecureshare.com/Developers and /Faq
+note: |
+  CCC publishes no OpenAPI and no developer reference, so nothing here is derived
+  from a spec. These are the cross-cutting semantics that could be established
+  from live behaviour and from CCC's own public product descriptions. Anything
+  unknown is recorded as unknown rather than assumed - the runtime conventions of
+  a partner-gated API are genuinely unpublished, and that is the finding.
+authentication:
+  style: OAuth 2.0 bearer token in the Authorization header
+  detail: see authentication/ccc-intelligent-solutions-authentication.yml
+  self_serve: false
+  gating: contract (api.cccis.com) / app registration + CCC review + active CIECA
+    membership (CCC Secure Share)
+versioning:
+  style: uri-path
+  current: v1
+  detail: see lifecycle/ccc-intelligent-solutions-lifecycle.yml
+idempotency:
+  supported: unknown
+  header: null
+  note: No idempotency key header, retry-safety contract or replay window is
+    documented anywhere on a CCC-controlled host, and none could be observed
+    without credentials. NOT claimed as supported.
+pagination:
+  style: unknown
+  note: No list-endpoint behaviour is publicly documented or anonymously observable.
+field_expansion:
+  supported: unknown
+metadata:
+  supported: unknown
+request_tracing:
+  header: null
+  note: No request-id / correlation-id header is returned on anonymous requests to
+    api.cccis.com. The Okta identity host does return an errorId correlation value
+    in its error envelope (see errors/).
+  identity_correlation_field: errorId
+error_envelope:
+  gateway: '{"fault":{"faultstring":"...","detail":{"errorcode":"..."}}}'
+  identity: '{"errorCode":"...","errorSummary":"...","errorLink":"...","errorId":"...","errorCauses":[]}'
+  rfc9457: false
+  detail: see errors/ccc-intelligent-solutions-problem-types.yml
+rate_limiting:
+  signalled: false
+  headers: []
+  note: No X-RateLimit-*, RateLimit-* (RFC 9239 draft) or Retry-After headers were
+    returned on anonymous probes. Quota policy, if any, is contractual.
+content_types:
+  api_gateway: application/json
+  secure_share: JSON/XML carrying CIECA BMS messages
+  detail: CCC describes the Secure Share program model as a "RESTful cloud service
+    API, JSON/XML" replacing the legacy "Legacy d-Base" local-file EMS extract.
+transport:
+  https_only: true
+  tls: TLSv1.3 observed on www.cccis.com and www.cccsecureshare.com
+  hsts: true
+  detail: see security/ccc-intelligent-solutions-domain-security.yml
+data_standards:
+  primary: CIECA BMS (bi-annual updates)
+  legacy: CIECA EMS (1994 standard, maintained in parallel)
+  message_types:
+  - collision repair assignment
+  - estimate
+  - final bill
+  - part price change
+  scoping: |
+    CCC assigns the appropriate BMS message to each registered app based on
+    business purpose; the repairer controls which elements of the estimate are
+    included in the message, which CCC contrasts with the all-or-nothing EMS
+    extract.
+consent_model:
+  actor: collision repairer (CCC ONE Estimating licensee)
+  mechanism: Configure > Secure Share within the CCC ONE platform
+  direction: repairer voluntarily authorises a registered third-party app to
+    receive their data
+  fees: none charged to repairers, insurers or third-party app developers
+cross_links:
+  authentication: authentication/ccc-intelligent-solutions-authentication.yml
+  scopes: scopes/ccc-intelligent-solutions-scopes.yml
+  errors: errors/ccc-intelligent-solutions-problem-types.yml
+  lifecycle: lifecycle/ccc-intelligent-solutions-lifecycle.yml
+  conformance: conformance/ccc-intelligent-solutions-conformance.yml
+  well_known: well-known/ccc-intelligent-solutions-well-known.yml

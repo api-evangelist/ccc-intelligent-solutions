@@ -1,0 +1,81 @@
+# CCC Intelligent Solutions Inc.
+> CCC Intelligent Solutions (CCC) is a leading cloud platform for the multi-trillion-dollar P&C insurance economy creating intelligent experiences for insurers, repairers, automakers, part suppliers, lenders, and more. 
+
+## Documentation
+- [Product Documentation](https://www.cccis.com/product-documentation): Specific product documentation for CCC’s various solutions including Estimating, Valuation, and Subrogation.
+- [Product Terms](https://www.cccis.com/product-terms): Specific terms for CCC’s various solutions including Estimating, Valuation, and Subrogation.
+
+## Policies
+- [Privacy Policy](https://www.cccis.com/policy/privacy): Details on how CCC collects, uses, and protects user data.
+- [Terms & Conditions](https://www.cccis.com/policy/terms-and-conditions): Legal terms for use of CCC services and media.
+- [Terms of Use](https://www.cccis.com/policy/terms-of-use): General terms governing access and usage of CCC websites and applications.
+- [Do Not Sell or Share My Personal Information](https://www.cccis.com/policy/do-not-sell-or-share-my-personal-information): Understand how you may exercise your rights to opt out of the sale or sharing of your personal information, or targeted advertising.
+
+## Company Overview
+- [CCC Intelligent Solutions Homepage](https://www.cccis.com/): Learn about CCC’s mission, technology, and ecosystem powering the P&C insurance economy.
+- [CCC Intelligent Solutions About Us](https://www.cccis.com/about): Learn about CCC’s vision, mission, values, and what drives us and meet the CCC's leadership team.
+- [Careers at CCC](https://www.cccis.com/about/careers): Learn about the benefits of being the CCC team member, Employee Resource Groups, Diversity Advisory Council, CCC Gives Back program, the life at CCC, and the CCC Internship program. 
+- [Environmental, Social, and Governance](https://www.cccis.com/about/environmental-social-and-governance): Learn about CCC's corporate responsibility, ESG focus, and featured initiatives.
+
+## Contact & Support
+- [CCC Customer Support](https://www.cccis.com/support): Get technical support, make a payment, find your CCC team, and more.
+- [Contact Us](https://www.cccis.com/contact): Get in touch, become a customer, find our locations, and more.
+
+## Reports
+- [Moments of Truth](https://www.cccis.com/reports/moments-of-truth): Does your business understand the real drivers of customer satisfaction and retention in the auto claims and repair journey? Access new insights from CCC into the moments that truly matter.
+- [Crash Course 3rd Quarter of 2025](https://www.cccis.com/reports/crash-course-2025/q3): How the Economy and Supply Chain Disruption Are Forging a New, More Complex Auto Industry Reality
+- [Resolving the Auto Insurance Crisis](https://www.cccis.com/reports/resolving-the-auto-insurance-crisis): How Cutting Claims Costs Can Take the Pressure Off Premiums.
+- [OEM Certifications Are Increasingly Critical](https://www.cccis.com/reports/growing-need-for-oem-certifications-whitepaper): Dive into recent vehicle and collision trends and find out how they impact the certification landscape.
+- [Crash Course 2026](https://www.cccis.com/reports/crash-course-2026): This year's Crash Course report provides a deeper examination of the structural forces driving continued complexity and reshaping the P&C insurance claims and collision repair ecosystem
+
+## Technology
+- [Transforming the Industry through Intelligent Experiences](https://www.cccis.com/our-technology/ix): An intelligent experience is one that just works for your business, your employees, and your customers. It synthesizes these different needs to deliver the optimal outcome.
+- [CCC IX Cloud™: Innovating Intelligent Experiences](https://www.cccis.com/our-technology/ix-cloud-platform): The CCC Intelligent Experience (IX) Cloud is the core of CCC’s technology. It integrates data and AI across our ecosystem to help you create workflows as dynamic and unique as the millions of claims and repairs you manage each year.
+- [Data + AI: The Intelligent Edge](https://www.cccis.com/our-technology/ai): In the increasingly complex world of auto claims and repair, AI is a strategic lever for progress.
+- [Connecting the Ecosystem](https://www.cccis.com/our-technology/ecosystem): CCC connects more than 35,000 companies that people rely on to keep their lives moving forward in the moments after an accident.
+
+## For Insurers
+- [APD Insurance Claims Solutions](https://www.cccis.com/insurance-carriers/apd): Create connected, empathetic claims experiences with AI-powered software and management tools to boost efficiency and productivity from claim creation to resolution.
+- [Insurance Claims Processing](https://www.cccis.com/insurance-carriers/apd/claims-processing): Enhance insurance claims processing with intuitive technology and seamless integrations. Improve efficiency.
+- [Insurance Claims Management](https://www.cccis.com/insurance-carriers/apd/claims-management): Simplify claims handling with powerful claims management software. Gain earlier insights and resolve claims decisions faster with AI.
+- [Insurance Claims Estimating](https://www.cccis.com/insurance-carriers/apd/claims-estimating): Build consistent estimates faster with intelligent insurance estimating software. Boost claims process efficiency.
+- [Insurance Claims Valuation](https://www.cccis.com/insurance-carriers/apd/claims-valuation): Streamline tasks and create a smoother experience for total loss claims.
+- [Insurance Claims Reinspection](https://www.cccis.com/insurance-carriers/apd/claims-reinspection): Simplify review of estimates with claims technology and DRP management tools. Boost consistency and optimize workflows.
+- [Casualty Claims Solutions](https://www.cccis.com/insurance-carriers/casualty): Integrate automation with your team's insight to deliver casualty experiences consistently and efficiently.
+- [First Party Casualty](https://www.cccis.com/insurance-carriers/casualty/first-party): Improve and expedite the first party medical claim management experience.
+- [Third Party Casualty](https://www.cccis.com/insurance-carriers/casualty/third-party): Simplify and optimize the third-party casualty claims process with an integrated ecosystem of solutions.
+- [Subrogation Claims Solutions](https://www.cccis.com/insurance-carriers/subrogation): Leverage automation to improve subrogation efficiency through increased recovery and reduced cycle times.
+- [Insurance Inbound Subrogation](https://www.cccis.com/insurance-carriers/subrogation/inbound): Assess inbound demands in minutes and resolve them faster with advanced technology.
+- [Insurance Outbound Subrogation](https://www.cccis.com/insurance-carriers/subrogation/outbound): Automate detection and prioritize recovery with technology configured to your needs. 
+- [Insurance Payments Solutions](https://www.cccis.com/insurance-carriers/payments): Revolutionize insurance payments processing with an all-in-one solution designed to enable seamless, end-to-end payment transformation.
+
+## For Repairers
+- [Repair Estimating Solutions](https://www.cccis.com/collision-repairers/estimating): Write better estimates faster with CCC ONE®, trusted by tens of thousands of collision repair facilities.
+- [Build Sheets](https://www.cccis.com/collision-repairers/estimating/build-sheets): See a vehicle's correct specifications in CCC ONE® without having to choose from a list of options.
+- [Direct Repair Program](https://www.cccis.com/collision-repairers/estimating/drp): Drive your business with DRP solutions. Access insurer program guidelines, improve performance through data-driven insights, and capture more leads.
+- [Repair Network](https://www.cccis.com/collision-repairers/estimating/repair-network): Grow your network to receive more assignments, build stronger relationships, and drive more business.
+- [Repair Solutions](https://www.cccis.com/collision-repairers/repair): Drive quality on every repair with accessible tools to improve repair planning, consistency, and overall performance.
+- [Diagnostics Management](https://www.cccis.com/collision-repairers/repair-solutions/diagnostics): Drive repair quality and shop profitability with better management of your scans and calibrations.
+- [Repair Procedures](https://www.cccis.com/collision-repairers/repair-solutions/procedures): Deliver better customer communication and service delivery with automated notifications for OEM repairs.
+- [Consumer Engagement Solutions](https://www.cccis.com/collision-repairers/consumer-engagement): Get more business online—build your website, engage customers through social media, enable online appointment booking, manage reviews and more.
+- [Repair Status Updates & Surveys](https://www.cccis.com/collision-repairers/consumer-engagement/repair-status-surveys): Boost your customer interactions by providing real-time updates and gathering valuable feedback.
+- [Digital Estimates & Online Appointments](https://www.cccis.com/collision-repairers/consumer-engagement/digital-estimates-appointments): Make it easy for customers to book and request estimates online-saving time and delivering a seamless, modern experience.
+- [Shop Websites & Reputation Management](https://www.cccis.com/collision-repairers/consumer-engagement/websites-reputation-management): Elevate your shop’s reputation with our integrated platform helping you seamlessly manage your website, reviews, listings, and social media from a single, centralized hub.
+- [Consumer Financing](https://www.cccis.com/collision-repairers/consumer-engagement/consumer-financing): Capture more business by giving customers flexible ways to pay for repairs over time.
+- [Repair Shop Management](https://www.cccis.com/collision-repairers/shop-management): Reduce data entry errors by using a single system for estimating, shop management, and invoice processing – including automatically syncing key documents like diagnostic scan reports and parts order invoices.
+- [Vehicle Workflow Management](https://www.cccis.com/collision-repairers/shop-management/vehicle-workflow): Move from managing tasks to managing your shop with an integrated workflow solution, embedded in your Estimating tools.
+- [Employee Pay Tools](https://www.cccis.com/collision-repairers/shop-management/employee-pay-tools): Empower your teams with digital tools right from their phones, resulting in greater transparency, simplified pay adjustment requests, and improved job satisfaction.
+- [Expert Business Coaching](https://www.cccis.com/collision-repairers/shop-management/elevate): Get personalized business coaching from ELEVATE™ to help your shop tackle any business issue - whether that's strategy, accounting, or operations.
+- [Parts for Collision Repairs](https://www.cccis.com/collision-repairers/parts): Order parts quickly and effortlessly with access to inventory from thousands of parts suppliers.
+- [Integrated Shop Payments](https://www.cccis.com/collision-repairers/payments): Simplify consumer payments with integrated solutions that reduce electronic fund transfer complexity and streamline application and reconciliation across workfiles.
+
+## For OEMs
+- [OEM Certified Network Solutions](https://www.cccis.com/oem/certified-network-and-programs): Build a stronger certified shop network, form closer relationships with your certified shops, and protect your brand.
+- [OEM Analytics Solutions](https://www.cccis.com/oem/analytics): Explore insights to help identify growth opportunities and guide brand decisions.
+- [OEM Parts Solutions](https://www.cccis.com/oem/parts): Display your parts and drive sales by reaching the largest network of collision repair shops.
+- [Payments Solutions for OEMs](https://www.cccis.com/oem/payments): Tap into our powerful shop network to revolutionize rebate programs with an intuitive, digital-first payment solution.
+
+## For Parts Suppliers
+- [Network of Parts Suppliers](https://www.cccis.com/parts-suppliers/network): Put your OEM, aftermarket, or recycled parts in front of more buyers and build connections to promote future parts sales.
+- [Recycler Solutions](https://www.cccis.com/parts-suppliers/recyclers): Reach more recycled parts buyers or use Pinnacle™ Yard Management to manage your yard from auction to crush in a single system.
+- [Parts Payments Simplified](https://www.cccis.com/parts-suppliers/payments): Tap into our powerful shop network to revolutionize rebate programs with an intuitive, digital-first payment solution.

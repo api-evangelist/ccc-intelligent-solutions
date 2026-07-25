@@ -1,0 +1,94 @@
+generated: '2026-07-25'
+method: searched
+source: live /.well-known/ probes of every CCC-controlled host in apis.yml
+note: |
+  CCC serves exactly one anonymously readable machine-readable discovery surface:
+  the Okta-hosted identity host auth.cccis.com (Okta custom domain). The API
+  gateway hosts (api.cccis.com, api.cccsecureshare.com), the marketing site
+  (www.cccis.com) and the contractual documentation hub (docs.cccis.com) publish
+  no /.well-known/ documents at all - no security.txt, no api-catalog, no
+  ai-plugin.json. Recorded 404s are real, probed results, not omissions.
+hosts:
+- host: https://auth.cccis.com
+  role: identity provider (Okta custom domain, cccis.customdomains.okta.com)
+  documents:
+  - path: /.well-known/openid-configuration
+    spec: OpenID Connect Discovery 1.0
+    status: 200
+    file: ccc-intelligent-solutions-openid-configuration.json
+    issuer: https://auth.cccis.com
+  - path: /.well-known/oauth-authorization-server
+    spec: RFC 8414
+    status: 200
+    file: ccc-intelligent-solutions-oauth-authorization-server.json
+    issuer: https://auth.cccis.com
+  - path: /oauth2/aus294ajl2Qs1RgY24x7/.well-known/openid-configuration
+    spec: OpenID Connect Discovery 1.0 (custom authorization server)
+    status: 200
+    file: ccc-intelligent-solutions-connect-openid-configuration.json
+    issuer: https://auth.cccis.com/oauth2/aus294ajl2Qs1RgY24x7
+    note: The authorization server behind the CCC Connect customer/partner portal.
+  - path: /.well-known/security.txt
+    spec: RFC 9116
+    status: 405
+    note: Okta host answers 405 rather than 404; no security.txt document is served.
+  - path: /.well-known/oauth-protected-resource
+    spec: RFC 9728
+    status: 405
+  - path: /.well-known/api-catalog
+    spec: RFC 9727
+    status: 405
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://api.cccis.com
+  role: production API gateway (Apigee behind Cloudflare)
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://api.cccsecureshare.com
+  role: CCC Secure Share API host (ASP.NET behind Cloudflare)
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://www.cccis.com
+  role: corporate website (Webflow behind Cloudflare)
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - path: /llms.txt
+    spec: llms.txt
+    status: 200
+    file: ../llms/ccc-intelligent-solutions-llms.txt
+    note: Not a /.well-known/ path, but the only other machine-readable document
+      CCC publishes anonymously. Harvested verbatim into llms/.
+- host: https://www.cccsecureshare.com
+  role: CCC Secure Share marketing + app-developer registration site
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /llms.txt, status: 404}
+- host: https://docs.cccis.com
+  role: contractual agreement / product documentation hub (Webflow, noindex)
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /llms.txt, status: 404}
+summary:
+  documents_found: 4
+  security_txt: false
+  openid_configuration: true
+  oauth_authorization_server: true
+  api_catalog: false
+  ai_plugin: false
+  llms_txt: true

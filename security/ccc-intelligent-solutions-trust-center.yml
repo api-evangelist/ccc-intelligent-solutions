@@ -1,0 +1,45 @@
+generated: '2026-07-25'
+method: searched
+probe: true
+url: https://trust.cccis.com/
+status: 200
+verified: '2026-07-25'
+platform: Whistic (public shared security profile, Angular SSR app served on CCC's
+  own trust.cccis.com hostname)
+platform_evidence: |
+  The page bundle at https://trust.cccis.com/main.4945c477c9ed006e.js references
+  api.whistic.com, graphql.whistic.com, external.whistic.com and the Whistic
+  shared-profile components (lib-whistic-shared-profile-elevate,
+  app-public-profile-elevate). The server-rendered HTML ships only the app shell.
+certifications: []
+certifications_note: |
+  No certification badge, framework name or document list is present in the
+  anonymously served HTML - Whistic loads the profile contents client-side and
+  typically gates document access behind an access request/NDA. NOTHING was
+  inferred: the certifications list is deliberately empty rather than populated
+  from marketing claims.
+published_assurance:
+  source: CCC Security Addendum (SA 110425) s7 Audit
+  quote: |
+    "Customer may request CCC's standard privacy and security questionnaires
+    (SIG), third party reports (SOC2 Type II), and documentation to demonstrate
+    compliance with this Security Addendum."
+  frameworks_named_by_ccc:
+  - NIST Cybersecurity Framework v2.0
+  - NIST SP 800-88
+  - SOC 2 Type II (report available to contracted customers on request)
+  - CVSS
+  self_serve_download: false
+related:
+  security_policy: security/ccc-intelligent-solutions-security-policy.yml
+  conformance: conformance/ccc-intelligent-solutions-conformance.yml
+  information_security_program: https://www.cccis.com/policy/information-security-program
+  legal_documents: https://docs.cccis.com/insurers/legal
+evidence:
+- source: https://trust.cccis.com/
+  kind: trust-center
+  status: 200
+  keywords: [whistic, trust]
+- source: https://www.cccis.com/policy/information-security-program
+  kind: security-policy-page
+  status: 200

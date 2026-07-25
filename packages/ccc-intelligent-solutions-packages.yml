@@ -1,0 +1,49 @@
+generated: '2026-07-25'
+method: searched
+source: public package-registry searches, 2026-07-25
+packages: []
+official_sdk_count: 0
+note: |
+  CCC ships no first-party client libraries in any public registry. This is an
+  audited empty result, not a skipped step - a future round should re-run these
+  searches rather than assume. The GitHub organisation github.com/cccis exists
+  (created 2018-06-08) but has zero public repositories and zero public members,
+  so there are no SDKs, samples or specs to derive candidates from either.
+registries_searched:
+- registry: npm
+  queries: [cccis, ccc-intelligent, cccsecureshare, ccc-one, ciecabms]
+  first_party_hits: 0
+  note: All matches are unrelated projects (@ckb-ccc/* is a blockchain toolkit).
+- registry: pypi
+  queries: [cccis, ccc-intelligent-solutions, cccsecureshare]
+  first_party_hits: 0
+  note: All 404.
+- registry: nuget
+  queries: [cccis]
+  first_party_hits: 0
+  note: totalHits 0 - notable because the Secure Share API host is ASP.NET.
+- registry: rubygems
+  queries: [cccis]
+  first_party_hits: 0
+- registry: packagist
+  queries: [cccis]
+  first_party_hits: 0
+- registry: crates.io
+  queries: [cccis]
+  first_party_hits: 0
+- registry: maven-central
+  queries: [cccis, "ccc intelligent solutions"]
+  first_party_hits: 0
+- registry: pkg.go.dev
+  queries: [cccis]
+  first_party_hits: 0
+source_code:
+  github_organization: https://github.com/cccis
+  public_repos: 0
+  public_members: 0
+  created: '2018-06-08'
+distribution_note: |
+  CCC's integration distribution is not a package: it is CCC ONE platform
+  entitlement plus a registered Secure Share app. Third-party developers receive
+  "technical documentation, APIs, and samples" only inside the gated app-developer
+  dashboard after CCC review and active CIECA membership.

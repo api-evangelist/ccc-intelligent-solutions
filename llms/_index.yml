@@ -1,0 +1,25 @@
+generated: '2026-07-25'
+method: searched
+source: https://www.cccis.com/llms.txt
+files:
+- file: ccc-intelligent-solutions-llms.txt
+  method: searched
+  source: https://www.cccis.com/llms.txt
+  status: 200
+  content_type: text/plain; charset=utf-8
+  bytes: 12580
+  sections: [Documentation, Policies, Company Overview, Contact & Support, Reports,
+    Technology, For Insurers, For Repairers, For OEMs, For Parts Suppliers]
+  note: |
+    Saved verbatim - CCC publishes its own llms.txt, which is genuinely notable
+    for a company that publishes no OpenAPI and no developer portal. It is an
+    agent-facing map of the marketing and policy surface (products by audience,
+    reports, policies, support), not of any API. There is no API, endpoint,
+    authentication or developer entry in it, and no llms-full.txt is served.
+    A verbatim provider file is never replaced by a generated one; provenance is
+    recorded here because llms.txt has no frontmatter of its own.
+  probes:
+  - {url: 'https://www.cccis.com/llms.txt', status: 200}
+  - {url: 'https://www.cccis.com/llms-full.txt', status: 404}
+  - {url: 'https://docs.cccis.com/llms.txt', status: 404}
+  - {url: 'https://www.cccsecureshare.com/llms.txt', status: 404}

@@ -1,0 +1,77 @@
+generated: '2026-07-25'
+method: searched
+source: live probes of https://api.cccis.com/v1 and https://auth.cccis.com/oauth2/v1/token
+format: vendor
+note: |
+  CCC publishes no error reference and no OpenAPI, so nothing could be derived
+  from 4xx/5xx response definitions. Every entry below was captured from a live
+  unauthenticated request against a CCC-controlled host on 2026-07-25. Two
+  distinct error envelopes are in play - the Apigee gateway fault envelope on
+  api.cccis.com and the Okta error envelope on auth.cccis.com - and neither is
+  RFC 9457 application/problem+json.
+envelopes:
+- name: apigee-fault
+  host: api.cccis.com
+  content_type: application/json
+  shape: '{"fault":{"faultstring":"<message>","detail":{"errorcode":"<code>"}}}'
+  code_field: fault.detail.errorcode
+  message_field: fault.faultstring
+  rfc9457: false
+- name: okta-error
+  host: auth.cccis.com
+  content_type: application/json
+  shape: '{"errorCode":"<code>","errorSummary":"<message>","errorLink":"<link>","errorId":"<id>","errorCauses":[]}'
+  code_field: errorCode
+  message_field: errorSummary
+  correlation_field: errorId
+  rfc9457: false
+problems:
+- status: 401
+  code: oauth.v2.InvalidAccessToken
+  title: Invalid access token
+  envelope: apigee-fault
+  detail: Returned for any request to the gateway with no Authorization header.
+  www_authenticate: 'Bearer realm="null",error="invalid_token",error_description="oauth.v2.InvalidAccessToken:
+    Invalid access token"'
+  observed_at: https://api.cccis.com/v1
+  remediation: Obtain a bearer token through the contract-issued CCC credential
+    flow; there is no public token endpoint for this gateway.
+- status: 401
+  code: keymanagement.service.invalid_access_token
+  title: Invalid Access Token
+  envelope: apigee-fault
+  detail: Returned when an Authorization Bearer header is present but the token
+    does not resolve in Apigee key management.
+  www_authenticate: 'Bearer realm="null",error="invalid_token",error_description="keymanagement.service.invalid_access_token:
+    Invalid Access Token"'
+  observed_at: https://api.cccis.com/v1
+  remediation: Re-issue the token; check that the credential is provisioned for
+    the requested product/environment.
+- status: 400
+  code: invalid_client
+  title: A client_id must be provided in the request.
+  envelope: okta-error
+  detail: Returned by the Okta token endpoint when no client authentication is
+    presented. Confirms there is no anonymous/public client registration.
+  observed_at: https://auth.cccis.com/oauth2/v1/token
+  remediation: Present client_secret_basic, client_secret_post, client_secret_jwt
+    or private_key_jwt client authentication.
+- status: 404
+  title: Not routed
+  envelope: none
+  detail: Both api.cccis.com/ and api.cccsecureshare.com/ return an unrouted 404
+    for every discovery path (/openapi.json, /swagger.json, /api-docs, /v1 on
+    Secure Share). The gateways are live; nothing is exposed anonymously.
+  observed_at: https://api.cccsecureshare.com/
+- status: 411
+  title: Length Required
+  envelope: none
+  detail: POST to https://api.cccis.com/v1 without a body returns 411 rather than
+    401 - an edge/Cloudflare behaviour, recorded so a future round does not read
+    it as an auth signal.
+  observed_at: https://api.cccis.com/v1
+gaps:
+- No public error-code registry, error reference page, or problem-type catalog.
+- No RFC 9457 (application/problem+json) usage observed on any CCC host.
+- Secure Share application-level errors (BMS message rejection, entitlement
+  failure) are documented only inside the gated app-developer dashboard.

@@ -19,6 +19,9 @@ description: CCC Intelligent Solutions (CCCIS, NASDAQ CCCS) is a Chicago-headqua
   product - CCC Secure Share - publishes only a marketing developer page whose
   documentation, samples and dashboard require registration, CCC approval and active
   CIECA membership. CCC's data-standards posture is CIECA (BMS/EMS) rather than ACORD.
+  The only machine-readable surfaces CCC serves anonymously are the Okta OpenID
+  Connect discovery documents at auth.cccis.com and an llms.txt at www.cccis.com that
+  maps the marketing and policy site but names no API.
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Insurance
@@ -31,6 +34,8 @@ tags:
 - Claims Technology
 - CIECA
 - Partner Gated
+- OAuth
+- OpenID Connect
 created: '2026-07-25'
 modified: '2026-07-25'
 specificationVersion: '0.19'
@@ -43,12 +48,14 @@ apis:
     local-file "data pump" model with a "RESTful cloud service API, JSON/XML". It moves
     collision assignment, estimate, final bill and part price change messages between
     CCC ONE Estimating licensees and registered third-party applications. No public
-    API reference, no OpenAPI and no base URL are published - the app developer
-    dashboard, "full API documentation including samples and technical documentation",
-    is released only after registration, CCC review of the application, and active
-    CIECA membership. The live API host api.cccsecureshare.com returns 404 on every
-    unauthenticated discovery path.
+    API reference, no OpenAPI and no documented base URL are published - the app
+    developer dashboard, "full API documentation including samples and technical
+    documentation", is released only after registration, CCC review of the application,
+    and active CIECA membership. The live API host api.cccsecureshare.com returns 404
+    on every unauthenticated discovery path, so the base URL below is observed rather
+    than documented by CCC.
   humanURL: https://www.cccsecureshare.com/Developers
+  baseURL: https://api.cccsecureshare.com
   tags:
   - Claims
   - Collision Repair
@@ -63,11 +70,69 @@ apis:
     url: https://www.cccsecureshare.com/Register
   - type: Login
     url: https://www.cccsecureshare.com/Login
+  - type: Conventions
+    url: conventions/ccc-intelligent-solutions-conventions.yml
+- aid: ccc-intelligent-solutions:ccc-platform-api
+  name: CCC Platform API Gateway
+  description: CCC's production API gateway. GET https://api.cccis.com/v1 returns HTTP
+    401 with an RFC 6750 Bearer challenge and an Apigee fault body
+    ({"fault":{"faultstring":"Invalid access token","detail":{"errorcode":"oauth.v2.InvalidAccessToken"}}}),
+    confirming a real, substantial API estate behind an OAuth 2.0 gateway (Apigee
+    behind Cloudflare). CCC documents nothing about it publicly - no reference, no
+    OpenAPI, no token issuance path, no scopes, no rate-limit signalling. Access is
+    contractual, negotiated through the Master Service Agreement rather than through
+    a developer portal. Recorded here because the surface is live and verifiable, not
+    because CCC advertises it.
+  humanURL: https://docs.cccis.com/insurers/documentation
+  baseURL: https://api.cccis.com
+  tags:
+  - Claims
+  - API Gateway
+  - OAuth
+  - Partner Gated
+  properties:
+  - type: Authentication
+    url: authentication/ccc-intelligent-solutions-authentication.yml
+  - type: ErrorCatalog
+    url: errors/ccc-intelligent-solutions-problem-types.yml
+  - type: Conventions
+    url: conventions/ccc-intelligent-solutions-conventions.yml
+- aid: ccc-intelligent-solutions:ccc-identity-oidc
+  name: CCC Identity (OpenID Connect)
+  description: The Okta-hosted identity service behind CCC Connect and the CCC customer
+    and partner portals, running on the custom domain auth.cccis.com
+    (cccis.customdomains.okta.com). This is the only CCC surface that serves
+    machine-readable discovery anonymously - an OpenID Connect Discovery 1.0 document
+    and an RFC 8414 authorization-server metadata document at the org level, plus a
+    second discovery document for the custom authorization server used by CCC Connect.
+    Supports authorization code with PKCE (S256), implicit, password, refresh token
+    and device code grants, token introspection and revocation, and advertises DPoP
+    signing algorithms. connect.cccis.com issues an authorization-code + PKCE request
+    with scope "openid email profile connect:portal". No public or dynamic client
+    registration is offered to third parties.
+  humanURL: https://connect.cccis.com/
+  baseURL: https://auth.cccis.com
+  tags:
+  - Identity
+  - OAuth
+  - OpenID Connect
+  - Okta
+  properties:
+  - type: OpenIDConnect
+    url: https://auth.cccis.com/.well-known/openid-configuration
+  - type: Authentication
+    url: authentication/ccc-intelligent-solutions-authentication.yml
+  - type: OAuthScopes
+    url: scopes/ccc-intelligent-solutions-scopes.yml
+  - type: WellKnown
+    url: well-known/ccc-intelligent-solutions-well-known.yml
 common:
 - type: Website
   url: https://www.cccis.com/
 - type: Documentation
   url: https://docs.cccis.com/
+- type: Documentation
+  url: https://www.cccis.com/product-documentation
 - type: Blog
   url: https://www.cccis.com/news-and-insights
 - type: GitHubOrganization
@@ -78,10 +143,52 @@ common:
   url: https://www.cccis.com/about/partners
 - type: Support
   url: https://www.cccis.com/support
+- type: HelpCenter
+  url: https://www.cccis.com/contact
 - type: InvestorRelations
   url: https://ir.cccis.com/
 - type: PrivacyPolicy
-  url: https://www.cccis.com/privacy-policy/
+  url: https://www.cccis.com/policy/privacy
+- type: TermsOfService
+  url: https://www.cccis.com/policy/terms-and-conditions
+- type: TermsOfUse
+  url: https://www.cccis.com/policy/terms-of-use
+- type: StatusPage
+  url: https://status.cccis.com/
+- type: TrustCenter
+  url: https://trust.cccis.com/
+- type: Compliance
+  url: https://www.cccis.com/policy/information-security-program
+- type: Security
+  url: https://www.cccis.com/policy/information-security-program
+- type: SignUp
+  url: https://www.cccsecureshare.com/Register
+- type: Login
+  url: https://connect.cccis.com/
+- type: LLMsTxt
+  url: llms/ccc-intelligent-solutions-llms.txt
+- type: WellKnown
+  url: well-known/ccc-intelligent-solutions-well-known.yml
+- type: Authentication
+  url: authentication/ccc-intelligent-solutions-authentication.yml
+- type: OAuthScopes
+  url: scopes/ccc-intelligent-solutions-scopes.yml
+- type: Conformance
+  url: conformance/ccc-intelligent-solutions-conformance.yml
+- type: ErrorCatalog
+  url: errors/ccc-intelligent-solutions-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/ccc-intelligent-solutions-lifecycle.yml
+- type: Conventions
+  url: conventions/ccc-intelligent-solutions-conventions.yml
+- type: Packages
+  url: packages/ccc-intelligent-solutions-packages.yml
+- type: DomainSecurity
+  url: security/ccc-intelligent-solutions-domain-security.yml
+- type: TrustCenter
+  url: security/ccc-intelligent-solutions-trust-center.yml
+- type: Security
+  url: security/ccc-intelligent-solutions-security-policy.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

@@ -1,0 +1,84 @@
+generated: '2026-07-25'
+method: searched
+source: https://auth.cccis.com/.well-known/openid-configuration
+note: |
+  CCC publishes no OpenAPI, so no oauth2 scope map could be derived from a spec.
+  These scopes are read verbatim from the two anonymously readable Okta
+  discovery documents at auth.cccis.com plus the scope observed on the live
+  CCC Connect authorization request. They are identity/portal scopes - CCC does
+  NOT publish any resource scopes for the api.cccis.com gateway or for CCC
+  Secure Share; those are issued privately after contract/CIECA gating.
+schemes:
+- name: CCCOktaOrgAuthorizationServer
+  source: well-known/ccc-intelligent-solutions-openid-configuration.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://auth.cccis.com/oauth2/v1/authorize
+    tokenUrl: https://auth.cccis.com/oauth2/v1/token
+  - flow: implicit
+    authorizationUrl: https://auth.cccis.com/oauth2/v1/authorize
+  - flow: deviceCode
+    deviceAuthorizationUrl: https://auth.cccis.com/oauth2/v1/device/authorize
+  - flow: clientCredentials
+    tokenUrl: https://auth.cccis.com/oauth2/v1/token
+    note: advertised in the RFC 8414 metadata only; no public client registration
+- name: CCCOktaConnectAuthorizationServer
+  source: well-known/ccc-intelligent-solutions-connect-openid-configuration.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://auth.cccis.com/oauth2/aus294ajl2Qs1RgY24x7/v1/authorize
+    tokenUrl: https://auth.cccis.com/oauth2/aus294ajl2Qs1RgY24x7/v1/token
+scopes:
+- scope: openid
+  description: OpenID Connect - request an ID token.
+  flows: [authorizationCode, implicit]
+  sources: [org, connect]
+- scope: profile
+  description: Basic profile claims for the authenticated CCC user.
+  flows: [authorizationCode, implicit]
+  sources: [org, connect]
+- scope: email
+  description: Email address claim.
+  flows: [authorizationCode, implicit]
+  sources: [org, connect]
+- scope: address
+  description: Address claim.
+  flows: [authorizationCode, implicit]
+  sources: [org, connect]
+- scope: phone
+  description: Phone number claim.
+  flows: [authorizationCode, implicit]
+  sources: [org, connect]
+- scope: offline_access
+  description: Issue a refresh token.
+  flows: [authorizationCode]
+  sources: [org, connect]
+- scope: groups
+  description: Okta group membership claim - the group grants that map a CCC user
+    to their entitlements.
+  flows: [authorizationCode, implicit]
+  sources: [org]
+- scope: device_sso
+  description: Native SSO / device secret exchange on the CCC Connect authorization
+    server.
+  flows: [authorizationCode]
+  sources: [connect]
+- scope: 'connect:portal'
+  description: Access to the CCC Connect customer/partner portal. Observed on the
+    live authorization-code + PKCE request issued by connect.cccis.com.
+  flows: [authorizationCode]
+  sources: [observed]
+platform_scopes:
+  note: |
+    The org authorization server also advertises the full Okta management scope
+    set (okta.users.*, okta.groups.*, okta.apps.*, okta.logs.read, and ~70 more).
+    These are Okta platform-administration scopes exposed by every Okta org, not
+    CCC product scopes, and they are recorded here only so a future round does
+    not mistake them for a CCC API surface.
+  count: 77
+  prefix: okta.
+gaps:
+- No resource scopes are published for the api.cccis.com production gateway.
+- No scopes are published for CCC Secure Share; access is per-app and per-BMS
+  message type, assigned by CCC at registration review ("CCC assigns the
+  appropriate BMS message for each registered app based on business purpose").
