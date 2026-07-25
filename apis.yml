@@ -1,0 +1,87 @@
+aid: ccc-intelligent-solutions
+url: https://raw.githubusercontent.com/api-evangelist/ccc-intelligent-solutions/refs/heads/main/apis.yml
+name: CCC Intelligent Solutions
+kind: company
+description: CCC Intelligent Solutions (CCCIS, NASDAQ CCCS) is a Chicago-headquartered
+  cloud software company that sits between US property and casualty insurance carriers
+  and the auto claims economy. Its IX Cloud platform and CCC ONE estimating products
+  run auto physical damage estimating, total-loss valuation, reinspection, subrogation,
+  first- and third-party casualty medical bill review, parts procurement, and claim
+  payments across tens of thousands of insurers, collision repair facilities, automakers,
+  parts suppliers and lenders. CCC is a claims-technology intermediary rather than a
+  risk carrier, and it is one of the software layers that accumulated value in a US
+  market with no federal insurance regulator and no open-insurance mandate. Its API
+  posture is honest to that seam and is entirely partner-gated - there is no public,
+  self-serve developer portal, no downloadable OpenAPI, and no public API reference.
+  The production gateway at api.cccis.com is live but answers unauthenticated calls
+  with an OAuth 2.0 bearer token fault, portal access runs through an Okta-hosted
+  OAuth 2.0 authorization-code flow at auth.cccis.com, and the one named public API
+  product - CCC Secure Share - publishes only a marketing developer page whose
+  documentation, samples and dashboard require registration, CCC approval and active
+  CIECA membership. CCC's data-standards posture is CIECA (BMS/EMS) rather than ACORD.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Insurance
+- United States
+- Property and Casualty
+- Claims
+- Auto Physical Damage
+- Collision Repair
+- Insurtech
+- Claims Technology
+- CIECA
+- Partner Gated
+created: '2026-07-25'
+modified: '2026-07-25'
+specificationVersion: '0.19'
+apis:
+- aid: ccc-intelligent-solutions:ccc-secure-share-api
+  name: CCC Secure Share API
+  description: CCC's only publicly named API product. Secure Share is described by CCC
+    as "a network using cloud-based APIs to permit more than 22,000 collision repairers
+    to connect to apps using the CIECA BMS data standard", replacing the legacy EMS
+    local-file "data pump" model with a "RESTful cloud service API, JSON/XML". It moves
+    collision assignment, estimate, final bill and part price change messages between
+    CCC ONE Estimating licensees and registered third-party applications. No public
+    API reference, no OpenAPI and no base URL are published - the app developer
+    dashboard, "full API documentation including samples and technical documentation",
+    is released only after registration, CCC review of the application, and active
+    CIECA membership. The live API host api.cccsecureshare.com returns 404 on every
+    unauthenticated discovery path.
+  humanURL: https://www.cccsecureshare.com/Developers
+  tags:
+  - Claims
+  - Collision Repair
+  - CIECA BMS
+  - Partner Gated
+  properties:
+  - type: Documentation
+    url: https://www.cccsecureshare.com/Developers
+  - type: Documentation
+    url: https://www.cccsecureshare.com/Faq
+  - type: SignUp
+    url: https://www.cccsecureshare.com/Register
+  - type: Login
+    url: https://www.cccsecureshare.com/Login
+common:
+- type: Website
+  url: https://www.cccis.com/
+- type: Documentation
+  url: https://docs.cccis.com/
+- type: Blog
+  url: https://www.cccis.com/news-and-insights
+- type: GitHubOrganization
+  url: https://github.com/cccis
+- type: LinkedIn
+  url: https://www.linkedin.com/company/ccc-intelligent-solutions
+- type: Partners
+  url: https://www.cccis.com/about/partners
+- type: Support
+  url: https://www.cccis.com/support
+- type: InvestorRelations
+  url: https://ir.cccis.com/
+- type: PrivacyPolicy
+  url: https://www.cccis.com/privacy-policy/
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

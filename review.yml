@@ -1,0 +1,292 @@
+aid: ccc-intelligent-solutions
+name: CCC Intelligent Solutions
+review:
+  question: Does CCC Intelligent Solutions publish a public, self-serve developer portal
+    with downloadable API definitions for its US property and casualty claims platform?
+  answer: false
+  date: '2026-07-25'
+  reviewer: API Evangelist
+  homeMarket: United States
+  gated: true
+findings:
+  summary: |
+    CCC Intelligent Solutions runs a large, real API estate and publishes none of it.
+    Every first-party developer-portal hostname probed on 2026-07-25 either does not
+    resolve or 404s: developer.cccis.com and developers.cccis.com are NXDOMAIN, and
+    /developers, /api, /developer, /partners and /integrations under www.cccis.com all
+    return 404. The company's former "CCC Developer Portal" at devportalcccis.com -
+    still surfaced by search engines - is dead: it resolves to a Pantheon edge node
+    that serves "404 - Unknown site" over both HTTP and HTTPS, with a certificate that
+    does not even cover the domain.
+
+    docs.cccis.com is live (200) but it is not a developer portal. It is a Webflow
+    "CCC Contractual Agreement Documentation" hub for insurance carriers - Master
+    Services Agreement, Data Processing Addendum, product terms and product
+    documentation PDFs - and it is served with meta robots noindex. No API reference,
+    no OpenAPI, no endpoints. Classified as a legal/contractual documentation site,
+    not category (a).
+
+    The one genuinely named public API product is CCC Secure Share. Its public page
+    (https://www.cccsecureshare.com/Developers, 200) is a marketing + registration
+    page, not a reference: it describes "a network using cloud-based APIs to permit
+    more than 22,000 collision repairers to connect to apps using the CIECA BMS data
+    standard" and contrasts the legacy EMS "local machine / legacy d-Base" model with
+    the new "RESTful cloud service API, JSON/XML" program model. Access is triple
+    gated - "Register today to access the developer dashboard with API documentation
+    and samples", "Registration applications will be reviewed by CCC", and per the FAQ
+    "App developers will need to be an active CIECA member before registration will be
+    processed." The live Secure Share API host api.cccsecureshare.com (ASP.NET behind
+    Cloudflare) returns 404 on /, /v1, /swagger.json, /openapi.json, /api-docs and
+    /swagger/index.html.
+
+    The production gateway api.cccis.com is live and clearly real: GET /v1 returns
+    HTTP 401 with `www-authenticate: Bearer realm="null", error="invalid_token",
+    error_description="oauth.v2.InvalidAccessToken"` and a JSON fault body
+    {"fault":{"faultstring":"Invalid access token","detail":{"errorcode":
+    "oauth.v2.InvalidAccessToken"}}} - Apigee fault codes behind Cloudflare. No
+    discovery path on that host is public (/openapi.json, /swagger.json, /api-docs and
+    / all 404). This is the clearest possible signal of a substantial API estate that
+    is contractually, not technically, closed.
+
+    Zero OpenAPI/Swagger/AsyncAPI documents were harvested, because none are published
+    anywhere on a CCC-controlled host. The openapi/ directory is deliberately absent.
+  developerPortal:
+    firstPartyPortalFound: false
+    classification: partner/agent login wall + legal documentation hub; no self-serve
+      developer portal
+    probes:
+    - url: https://developer.cccis.com
+      status: '000'
+      note: DNS does not resolve (NXDOMAIN).
+    - url: https://developers.cccis.com
+      status: '000'
+      note: DNS does not resolve (NXDOMAIN).
+    - url: https://docs.cccis.com/
+      status: 200
+      note: 'Serves "CCC Contractual Agreement Documentation" - a Webflow legal and
+        product-terms hub for insurance carriers, meta robots noindex. Not a developer
+        portal.'
+    - url: https://api.cccis.com/
+      status: 404
+      note: Live gateway host; root not routed.
+    - url: https://api.cccis.com/v1
+      status: 401
+      note: OAuth 2.0 bearer required; Apigee oauth.v2.InvalidAccessToken fault. Real
+        production API, no public documentation.
+    - url: https://www.cccis.com/developers
+      status: 404
+    - url: https://www.cccis.com/api
+      status: 404
+    - url: https://www.cccis.com/developer
+      status: 404
+    - url: https://www.cccis.com/partners
+      status: 404
+      note: The real partners page is https://www.cccis.com/about/partners (200), a
+        marketing page with no developer surface.
+    - url: https://www.cccis.com/integrations
+      status: 404
+    - url: https://devportalcccis.com/
+      status: 404
+      note: Former "CCC Developer Portal" indexed by search engines. Now a Pantheon
+        "404 - Unknown site"; TLS certificate covers only *.pantheonsite.io et al.
+        Portal is dead.
+    - url: https://www.cccsecureshare.com/Developers
+      status: 200
+      note: Real app-developer program page, but documentation and dashboard are behind
+        registration + CCC approval + active CIECA membership.
+    - url: https://api.cccsecureshare.com/
+      status: 404
+      note: Live ASP.NET/Cloudflare Secure Share API host; every discovery path 404s.
+    - url: https://connect.cccis.com/
+      status: 200
+      note: Redirects to auth.cccis.com OAuth 2.0 authorize with PKCE and scope
+        "connect:portal" - a partner/customer login wall.
+  specsHarvested:
+    count: 0
+    openapi: []
+    asyncapi: []
+    graphql: []
+    proto: []
+    note: No OpenAPI, Swagger, AsyncAPI, GraphQL SDL or protobuf document is published
+      on any CCC-controlled host. Nothing was saved, and openapi/ is intentionally
+      omitted rather than filled with anything invented or third-party.
+  acordPosture:
+    phrase: ACORD cited in marketing only; standards posture is CIECA BMS/EMS (CCC is a
+      CIECA founding member)
+    detail: |
+      CCC's data-standards identity is CIECA (Collision Industry Electronic Commerce
+      Association), not ACORD. CCC is a founding CIECA member, migrated from the legacy
+      EMS export format to the CIECA BMS XML standard, and built CCC Secure Share
+      (launched 2017) as the BMS-native replacement for EMS "data pumps"; CIECA named
+      CCC its Electronic Commerce Company of the Year in January 2025. Secure Share
+      registration is conditioned on active CIECA membership and CCC assigns "the
+      appropriate BMS message ... for each registered app based on business purpose".
+      The only ACORD reference located on cccis.com is a citation of the ACORD
+      Insurance Digital Maturity Study inside a CCC Payments marketing post - no ACORD
+      XML, AL3, ACORD-certified or NGDS claim. No IVANS / agency-download / Applied
+      Epic / Vertafore AMS360 integration is advertised either; CCC's US distribution
+      seam is carrier claims systems and collision-repair shop management, not agency
+      management systems. Named carrier-system integrations are announced as press
+      posts (Guidewire, Insuresoft) rather than as documented APIs.
+    standardsBody: CIECA
+    acordCertified: false
+    ivansOrAgencyDownload: false
+  insuranceVerbs:
+    quote: false
+    bind: false
+    issue: false
+    fnol: partner-gated
+    note: CCC is claims technology, not a carrier or a quote/bind/issue platform - no
+      rating, quoting, binding or policy-issuance API exists. Claims intake and the
+      downstream estimating/valuation/subrogation/casualty/payments workflow are the
+      real product surface, and every part of it is reachable only through a CCC
+      contract and gated credentials. Nothing consumer-facing is self-serve.
+  authModel:
+    scheme: OAuth 2.0
+    details: |
+      Two confirmed, anonymous-readable auth surfaces. (1) api.cccis.com enforces OAuth
+      2.0 bearer tokens with Apigee-style faults (oauth.v2.InvalidAccessToken); no
+      token issuance path is public. (2) auth.cccis.com is an Okta custom domain
+      (cccis.customdomains.okta.com) serving OpenID Connect discovery anonymously.
+    wellKnown:
+    - url: https://auth.cccis.com/.well-known/openid-configuration
+      status: 200
+      issuer: https://auth.cccis.com
+      note: Okta org authorization server. grant_types_supported includes
+        authorization_code, implicit, refresh_token, password and device_code;
+        code_challenge_methods_supported S256; scopes openid, email, profile, address,
+        phone, offline_access, groups.
+    - url: https://auth.cccis.com/oauth2/aus294ajl2Qs1RgY24x7/.well-known/openid-configuration
+      status: 200
+      issuer: https://auth.cccis.com/oauth2/aus294ajl2Qs1RgY24x7
+      note: Custom authorization server used by the CCC Connect portal.
+    - url: https://auth.cccis.com/.well-known/oauth-authorization-server
+      status: 200
+      note: Also advertises client_credentials in grant_types_supported at the org
+        server; no public client registration for third parties is offered.
+    observedFlow: connect.cccis.com issues an authorization-code + PKCE request with
+      scope "openid email profile connect:portal" - a customer/partner portal login,
+      not a developer credential flow.
+  webhooks:
+    documented: false
+    asyncapi: false
+    note: No public event catalog, webhook reference or AsyncAPI document. Absence is
+      the finding; Secure Share message delivery is described only as cloud-to-cloud
+      BMS exchange on the marketing page.
+  postman:
+    publicWorkspace: false
+    note: https://www.postman.com/cccis returns a generic Postman page, not a published
+      CCC workspace or collection.
+  sourceCode:
+    githubOrganization: https://github.com/cccis
+    publicRepos: 0
+    note: The org exists and is real but has zero public repositories and no public
+      members - no SDKs, no specs, no samples.
+  transports:
+  - protocol: REST
+    scheme: https
+    baseURL: https://api.cccis.com
+    documented: false
+    note: Confirmed live by a 401 OAuth bearer challenge on /v1. Base URL is observed,
+      not documented by CCC.
+  - protocol: REST
+    scheme: https
+    baseURL: https://api.cccsecureshare.com
+    documented: false
+    note: Live Secure Share API host (ASP.NET behind Cloudflare). CCC describes the
+      program model publicly as "RESTful cloud service API, JSON/XML" carrying CIECA
+      BMS messages, but publishes no paths.
+  - protocol: OIDC
+    scheme: https
+    baseURL: https://auth.cccis.com
+    documented: true
+    note: Only anonymously readable machine-readable surface CCC serves.
+  - protocol: GraphQL
+    documented: false
+  - protocol: gRPC
+    documented: false
+  - protocol: WebSocket
+    documented: false
+  - protocol: EDI/flat-file
+    documented: partial
+    note: Legacy CIECA EMS export from CCC ONE Estimating, publicly described as being
+      superseded by cloud BMS via Secure Share.
+sources:
+- url: https://www.cccsecureshare.com/Developers
+  type: Documentation
+  status: 200
+  note: 'Verbatim: "a network using cloud-based APIs to permit more than 22,000 collision
+    repairers to connect to apps using the CIECA BMS data standard"; program model row
+    "Legacy d-Base" vs "RESTful cloud service API, JSON/XML"; "Register today to access
+    the developer dashboard with API documentation and samples."'
+- url: https://www.cccsecureshare.com/Faq
+  type: Documentation
+  status: 200
+  note: 'Secure Share defined as "a cloud-based application program interface (API)
+    that allows collision repairer licensees of CCC ONE Estimating to control their
+    sharing of data with registered third-party app developers via a secure channel
+    using the CIECA BMS data standard"; "App developers will need to be an active CIECA
+    member before registration will be processed"; no fee.'
+- url: https://docs.cccis.com/
+  type: Documentation
+  status: 200
+  note: Contractual agreement/legal + product documentation hub for carriers; noindex;
+    no API content.
+- url: https://docs.cccis.com/insurers/documentation
+  type: Documentation
+  status: 200
+  note: Product documentation for APD, Subrogation, Fraud Detection, First/Third Party
+    Casualty and Payments plus add-ons (Data Feed, Duncan RV Estimating Integration,
+    Field Photo Inspection, Interface Services). No API reference, no OpenAPI, no
+    ACORD/CIECA/IVANS reference on the page.
+- url: https://api.cccis.com/v1
+  type: APIReference
+  status: 401
+  note: OAuth 2.0 bearer challenge; Apigee oauth.v2.InvalidAccessToken fault body.
+- url: https://auth.cccis.com/.well-known/openid-configuration
+  type: Authentication
+  status: 200
+  note: Okta-hosted OIDC discovery, fetched anonymously.
+- url: https://www.cccis.com/our-technology/ix-cloud-platform
+  type: Documentation
+  status: 200
+  note: IX Cloud marketing page. No API, developer, ACORD, CIECA, EMS or BMS mention;
+    integration framed only as "One connection to CCC unlocks tens of thousands of
+    connections across our ecosystem."
+- url: https://www.cieca.com/blogs/post/bms-member-spotlight-ccc-intelligent-solutions
+  type: Documentation
+  status: 200
+  note: CIECA member spotlight - CCC moved from EMS to BMS in the early 2000s across
+    "dozens of internal and external interfaces to exchange assignment, estimate, total
+    loss" messages; Secure Share launched 2017 on BMS.
+- url: https://www.cccis.com/news-and-insights/posts/ccc-intelligent-solutions-receives-ciecas-electronic-commerce-company-of-the-year-award
+  type: Blog
+  status: 200
+  note: CIECA Electronic Commerce Company of the Year, January 2025; CCC described as a
+    CIECA founding member.
+- url: https://www.cccis.com/news-and-insights/posts/ccc-payments-powering-auto-claim-payments-transformation
+  type: Blog
+  status: 200
+  note: The only ACORD reference located on cccis.com - a citation of the ACORD
+    Insurance Digital Maturity Study. Marketing citation, not a standards claim.
+- url: https://github.com/cccis
+  type: SourceCode
+  status: 200
+  note: Real org, 0 public repositories, no public members.
+- url: https://devportalcccis.com/
+  type: Documentation
+  status: 404
+  note: Former CCC Developer Portal, now decommissioned ("404 - Unknown site" on
+    Pantheon, mismatched TLS certificate).
+actions:
+  openapiHarvested: false
+  openapiDirectoryCreated: false
+  apisYmlUpdated: true
+  apisListed: 1
+  reason: |
+    Only one real, publicly named API product exists (CCC Secure Share), and it is
+    listed with its public developer page and FAQ only - no baseURL, no APIReference
+    and no OpenAPI property, because CCC publishes none of those. api.cccis.com is
+    recorded here as an observed transport rather than as an apis[] entry, since CCC
+    documents nothing about it publicly. Nothing was inferred, reconstructed or taken
+    from third-party API directories.
