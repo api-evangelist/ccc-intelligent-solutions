@@ -34,6 +34,19 @@ tags:
 - Claims Technology
 - CIECA
 - Partner Gated
+- Authentication
+- OpenID Connect
+tags_raw:
+- Insurance
+- United States
+- Property and Casualty
+- Claims
+- Auto Physical Damage
+- Collision Repair
+- Insurtech
+- Claims Technology
+- CIECA
+- Partner Gated
 - OAuth
 - OpenID Connect
 created: '2026-07-25'
@@ -88,6 +101,11 @@ apis:
   tags:
   - Claims
   - API Gateway
+  - Authentication
+  - Partner Gated
+  tags_raw:
+  - Claims
+  - API Gateway
   - OAuth
   - Partner Gated
   properties:
@@ -113,6 +131,11 @@ apis:
   humanURL: https://connect.cccis.com/
   baseURL: https://auth.cccis.com
   tags:
+  - Identity
+  - Authentication
+  - OpenID Connect
+  - Okta
+  tags_raw:
   - Identity
   - OAuth
   - OpenID Connect
