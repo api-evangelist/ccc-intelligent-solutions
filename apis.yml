@@ -22,6 +22,17 @@ description: CCC Intelligent Solutions (CCCIS, NASDAQ CCCS) is a Chicago-headqua
   The only machine-readable surfaces CCC serves anonymously are the Okta OpenID
   Connect discovery documents at auth.cccis.com and an llms.txt at www.cccis.com that
   maps the marketing and policy site but names no API.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Insurance
