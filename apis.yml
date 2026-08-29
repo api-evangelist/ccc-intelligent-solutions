@@ -1,5 +1,8 @@
 aid: ccc-intelligent-solutions
 url: https://raw.githubusercontent.com/api-evangelist/ccc-intelligent-solutions/refs/heads/main/apis.yml
+x-api-posture: no-product-api
+x-api-posture-basis: observed
+x-api-posture-note: "Its API posture is honest to that seam and is entirely partner-gated - there is no public, self-serve developer portal, no downloadable OpenAPI, and no public API reference."
 name: CCC Intelligent Solutions
 kind: company
 description: CCC Intelligent Solutions (CCCIS, NASDAQ CCCS) is a Chicago-headquartered
