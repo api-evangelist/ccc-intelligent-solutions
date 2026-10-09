@@ -42,6 +42,9 @@ accessModel:
   trial: false
   try_now: false
   public: false
+  gated: partner
+  gated_source:
+  - tag:Partner Gated
   label: Self-serve signup
   confidence: medium
   source:
@@ -61,7 +64,6 @@ tags:
 - Insurtech
 - Claims Technology
 - CIECA
-- Partner Gated
 - Authentication
 tags_raw:
 - Insurance
@@ -73,7 +75,6 @@ tags_raw:
 - Insurtech
 - Claims Technology
 - CIECA
-- Partner Gated
 - OAuth
 created: '2026-07-25'
 modified: '2026-07-25'
@@ -243,3 +244,4 @@ maintainers:
   email: kin@apievangelist.com
 x-tags-removed:
 - OpenID Connect
+- Partner Gated
