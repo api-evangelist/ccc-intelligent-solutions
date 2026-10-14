@@ -1,0 +1,48 @@
+generated: '2026-10-14'
+method: searched
+checked:
+- duck-creek/integrations/duck-creek-integration-edges.yml
+- guidewire/integrations/guidewire-integration-edges.yml
+source:
+- duck-creek/integrations/duck-creek-integration-edges.yml
+- guidewire/integrations/guidewire-integration-edges.yml
+edges:
+- partner_name: Duck Creek (own)
+  partner: duck-creek
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.duckcreek.com/partner/ccc-intelligent-solutions/
+  mirror_of: duck-creek/integrations/duck-creek-integration-edges.yml
+  apps:
+  - CCC Intelligent Solutions
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Solution
+- partner_name: Guidewire (own)
+  partner: guidewire
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.guidewire.com/product/01tPW00000AaBTpYAN/01tPW00000AaBTpYAN
+  mirror_of: guidewire/integrations/guidewire-integration-edges.yml
+  apps:
+  - CCC® Workflow for Auto Physical Damage (APD) for ClaimCenter 10
+  - CCC® Subrogation Accelerator - AI-Powered Subrogation for ClaimCenter 10
+  - CCC Accelerator for Unified Integration for ClaimCenter
+  listing_count: 3
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Accelerator; Claims Automation;Claims Estimating & Servicing; ClaimCenter
+  badges:
+  - Ready for Guidewire
+  - 'Partner tier: Growth'
