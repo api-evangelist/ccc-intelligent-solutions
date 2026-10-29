@@ -1,4 +1,4 @@
-# CCC Intelligent Solutions (ccc-intelligent-solutions)
+# CCC Intelligent Solutions
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,72 +64,104 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-CCC Intelligent Solutions (CCCIS, NASDAQ CCCS) is a Chicago-headquartered cloud software company that sits between US property and casualty insurance carriers and the auto claims economy. Its IX Cloud platform and CCC ONE estimating products run auto physical damage estimating, total-loss valuation, reinspection, subrogation, first- and third-party casualty medical bill review, parts procurement, and claim payments across tens of thousands of insurers, collision repair facilities, automakers, parts suppliers and lenders. CCC is a claims-technology intermediary rather than a risk carrier, and it is one of the software layers that accumulated value in a US market with no federal insurance regulator and no open-insurance mandate. Its API posture is honest to that seam and is entirely partner-gated — there is no public, self-serve developer portal, no downloadable OpenAPI, and no public API reference.
+CCC Intelligent Solutions (CCCIS, NASDAQ CCCS) is a Chicago-headquartered cloud software company that sits between US property and casualty insurance carriers and the auto claims economy. Its IX Cloud platform and CCC ONE estimating products run auto physical damage estimating, total-loss valuation, reinspection, subrogation, first- and third-party casualty medical bill review, parts procurement, and claim payments across tens of thousands of insurers, collision repair facilities, automakers, parts suppliers and lenders. CCC is a claims-technology intermediary rather than a risk carrier, and it is one of the software layers that accumulated value in a US market with no federal insurance regulator and no open-insurance mandate. Its API posture is honest to that seam and is entirely partner-gated - there is no public, self-serve developer portal, no downloadable OpenAPI, and no public API reference. The production gateway at api.cccis.com is live but answers unauthenticated calls with an OAuth 2.0 bearer token fault, portal access runs through an Okta-hosted OAuth 2.0 authorization-code flow at auth.cccis.com, and the one named public API product - CCC Secure Share - publishes only a marketing developer page whose documentation, samples and dashboard require registration, CCC approval and active CIECA membership. CCC's data-standards posture is CIECA (BMS/EMS) rather than ACORD. The only machine-readable surfaces CCC serves anonymously are the Okta OpenID Connect discovery documents at auth.cccis.com and an llms.txt at www.cccis.com that maps the marketing and policy site but names no API.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/ccc-intelligent-solutions/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/ccc-intelligent-solutions/refs/heads/main/apis.yml)
+**Areas:** Insurance · United States · Property and Casualty · Claims · Auto Physical Damage · Collision Repair · Insurtech · Claims Technology · CIECA · Authentication
 
-## Tags
+## CCC Intelligent Solutions on APIs.io
 
-- Insurance
-- United States
-- Property and Casualty
-- Claims
-- Auto Physical Damage
-- Collision Repair
-- Insurtech
-- Claims Technology
-- CIECA
-- Partner Gated
+Everything profiled for CCC Intelligent Solutions is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/ccc-intelligent-solutions/](https://apis.io/providers/ccc-intelligent-solutions/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (3)
 
-- **Created:** 2026-07-25
-- **Modified:** 2026-07-25
+- [CCC Secure Share API](https://apis.io/apis/ccc-intelligent-solutions/ccc-secure-share-api/) — CCC's only publicly named API product. Secure Share is described by CCC as "a network using cloud-based APIs to permit more than 22,000 collision repairers…
+- [CCC Platform API Gateway](https://apis.io/apis/ccc-intelligent-solutions/ccc-platform-api/) — CCC's production API gateway. GET https://api.cccis.com/v1 returns HTTP 401 with an RFC 6750 Bearer challenge and an Apigee fault body…
+- [CCC Identity (OpenID Connect)](https://apis.io/apis/ccc-intelligent-solutions/ccc-identity-oidc/) — The Okta-hosted identity service behind CCC Connect and the CCC customer and partner portals, running on the custom domain auth.cccis.com…
 
-## APIs
+### Published properties
 
-### CCC Secure Share API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-CCC's only publicly named API product. Secure Share is described by CCC as "a network using cloud-based APIs to permit more than 22,000 collision repairers to connect to apps using the CIECA BMS data standard", replacing the legacy EMS local-file "data pump" model with a "RESTful cloud service API, JSON/XML". It moves collision assignment, estimate, final bill and part price change messages between CCC ONE Estimating licensees and registered third-party applications. No public API reference, no OpenAPI and no base URL are published — the app developer dashboard, "full API documentation including samples and technical documentation", is released only after registration, CCC review of the application, and active CIECA membership.
+#### Security (3)
 
-- **Human URL:** [https://www.cccsecureshare.com/Developers](https://www.cccsecureshare.com/Developers)
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Tags
+- [Ccc Intelligent Solutions Authentication](https://apis.io/security/ccc-intelligent-solutions/ccc-intelligent-solutions-authentication/)
+- [Ccc Intelligent Solutions Domain Security](https://apis.io/security/ccc-intelligent-solutions/ccc-intelligent-solutions-domain-security/)
+- [Ccc Intelligent Solutions Trust Center](https://apis.io/security/ccc-intelligent-solutions/ccc-intelligent-solutions-trust-center/)
 
-- Claims
-- Collision Repair
-- CIECA BMS
-- Partner Gated
+#### OAuth scopes (1)
 
-#### Properties
+The permissions the API asks for.
 
-- [Documentation](https://www.cccsecureshare.com/Developers)
-- [Documentation](https://www.cccsecureshare.com/Faq)
-- [Sign Up](https://www.cccsecureshare.com/Register)
-- [Login](https://www.cccsecureshare.com/Login)
+- [Ccc Intelligent Solutions Scopes](https://apis.io/scopes/ccc-intelligent-solutions/ccc-intelligent-solutions-scopes/)
 
-## API Posture
+## Where to find this API
 
-CCC runs a substantial API estate and publishes none of it. Findings as of 2026-07-25:
-
-- **No self-serve developer portal.** `developer.cccis.com` and `developers.cccis.com` do not resolve. `/developers`, `/api`, `/developer`, `/partners` and `/integrations` on `www.cccis.com` all return 404. The former CCC Developer Portal at `devportalcccis.com` is decommissioned — it now serves a Pantheon "404 - Unknown site".
-- **`docs.cccis.com` is not a developer portal.** It returns 200, but it is a contractual/legal documentation hub for insurance carriers (Master Services Agreement, product terms, product documentation PDFs), served `noindex`.
-- **A live, closed gateway.** `GET https://api.cccis.com/v1` returns HTTP 401 with an Apigee `oauth.v2.InvalidAccessToken` bearer challenge. Every discovery path on that host 404s.
-- **Zero machine-readable API definitions.** No OpenAPI, Swagger, AsyncAPI, GraphQL SDL or protobuf document is published on any CCC-controlled host, so this repo has no `openapi/` directory.
-- **Auth is OAuth 2.0 via Okta.** `auth.cccis.com` is an Okta custom domain serving OIDC discovery anonymously; `connect.cccis.com` redirects into an authorization-code + PKCE login with scope `connect:portal`.
-- **Standards posture is CIECA, not ACORD.** CCC is a CIECA founding member, moved from EMS to CIECA BMS, and built Secure Share as the BMS-native replacement for EMS data pumps; CIECA named CCC its Electronic Commerce Company of the Year in January 2025. The only ACORD reference found on cccis.com is a citation of the ACORD Insurance Digital Maturity Study in a marketing post.
-- **No quote / bind / issue.** CCC is claims technology; the claims workflow it does run is reachable only under contract with gated credentials.
-- **No public webhooks, no public Postman workspace, and `github.com/cccis` has zero public repositories.**
-
-See [review.yml](review.yml) for the full probe log, HTTP statuses and provenance.
-
-## Links
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.cccis.com/)
-- [Documentation (contractual/product)](https://docs.cccis.com/)
-- [News and Insights](https://www.cccis.com/news-and-insights)
-- [Partners](https://www.cccis.com/about/partners)
+- [Documentation](https://docs.cccis.com/)
+- [Sign up](https://www.cccsecureshare.com/Register)
 - [Support](https://www.cccis.com/support)
-- [Investor Relations](https://ir.cccis.com/)
+- [Blog](https://www.cccis.com/news-and-insights)
+- [Security](https://www.cccis.com/policy/information-security-program)
+- [Compliance](https://www.cccis.com/policy/information-security-program)
+- [Trust centre](https://trust.cccis.com/)
+- [Terms of service](https://www.cccis.com/policy/terms-and-conditions)
+- [Privacy policy](https://www.cccis.com/policy/privacy)
 - [GitHub](https://github.com/cccis)
-- [LinkedIn](https://www.linkedin.com/company/ccc-intelligent-solutions)
+- [Status](https://status.cccis.com/)
+
+## API Evangelist rating
+
+**Kin Score 30.6** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 78.6 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 21.1 |
+| Developer ergonomics | 28.6 |
+| Access clarity | 42.1 |
+
+**Agent readiness 18.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+
+**Regulatory alignment 41.2** — Insurance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/ccc-intelligent-solutions/](https://apis.io/providers/ccc-intelligent-solutions/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for CCC Intelligent Solutions: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/ccc-intelligent-solutions/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
